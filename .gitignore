@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# PyTorch model weights
+*.pth
+*.pt
+*.ckpt
+
+# Large video / image datasets
+data/*.avi
+data/*.mp4
+data/*.mov
+data/*.mkv
+data/*.npy
+data/*.npz
+
+# Outputs (keep directory, ignore generated files)
+outputs/*.png
+outputs/*.jpg
+outputs/*.csv
+outputs/*.mp4
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
