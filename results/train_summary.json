@@ -1,0 +1,9 @@
+{
+  "best_val_dice": 0.9251364987975954,
+  "best_epoch": 12,
+  "stop_reason": "time_budget",
+  "elapsed_minutes": 123.14,
+  "weights_sha256": "0ef521470c5393318964dcc8a34d7acedf5310756c3ba45438cda382f5ceb02a",
+  "train_frames": 4000,
+  "val_frames": 2576
+}

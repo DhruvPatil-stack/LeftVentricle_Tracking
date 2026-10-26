@@ -1,0 +1,35 @@
+[
+  {
+    "rank": 1,
+    "file_name": "0X398111BC19E289A6",
+    "ef_label": 65.20563465,
+    "fac_pred_pct": 26.0189,
+    "abs_error_pp": 39.18673464999999,
+    "cause": "cause unknown",
+    "new_fac_pred_pct": 51.5981,
+    "new_abs_error_pp": 13.6075,
+    "cause_after_fix": "spurious ED peaks (no prominence limit)"
+  },
+  {
+    "rank": 2,
+    "file_name": "0X6D78CCCD9680F137",
+    "ef_label": 66.80226623,
+    "fac_pred_pct": 30.4135,
+    "abs_error_pp": 36.38876623,
+    "cause": "cause unknown",
+    "new_fac_pred_pct": 59.7433,
+    "new_abs_error_pp": 7.059,
+    "cause_after_fix": "spurious ED peaks (no prominence limit)"
+  },
+  {
+    "rank": 3,
+    "file_name": "0X3D07B11AAF49F722",
+    "ef_label": 53.08587539,
+    "fac_pred_pct": 17.0992,
+    "abs_error_pp": 35.98667539,
+    "cause": "cause unknown",
+    "new_fac_pred_pct": 51.5,
+    "new_abs_error_pp": 1.5859,
+    "cause_after_fix": "spurious ED peaks (no prominence limit)"
+  }
+]

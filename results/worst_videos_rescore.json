@@ -1,0 +1,57 @@
+[
+  {
+    "rank": 1,
+    "file_name": "0X75AF130134AADF00",
+    "ef_label": 28.3900048,
+    "fac_pred_pct": 73.3024,
+    "abs_error_pp": 44.912395200000006,
+    "n_beats": 1,
+    "rejected_ed_peaks": 4,
+    "dice_mean": 0.922202210237612,
+    "cause": "only one beat detected; limited averaging"
+  },
+  {
+    "rank": 2,
+    "file_name": "0X2D3E3C182D1459C8",
+    "ef_label": 74.0456687,
+    "fac_pred_pct": 32.6327,
+    "abs_error_pp": 41.41296869999999,
+    "n_beats": 2,
+    "rejected_ed_peaks": 1,
+    "dice_mean": 0.7699526329349744,
+    "cause": "cause unknown"
+  },
+  {
+    "rank": 3,
+    "file_name": "0X17E51BF21235E28B",
+    "ef_label": 58.31282128,
+    "fac_pred_pct": 97.4541,
+    "abs_error_pp": 39.141278719999995,
+    "n_beats": 1,
+    "rejected_ed_peaks": 3,
+    "dice_mean": 0.8907647178723668,
+    "cause": "single ED-ES pair fallback; empty_frac=0.02"
+  },
+  {
+    "rank": 4,
+    "file_name": "0X350E5D4955052AFA",
+    "ef_label": 19.81245149,
+    "fac_pred_pct": 57.1176,
+    "abs_error_pp": 37.30514851,
+    "n_beats": 1,
+    "rejected_ed_peaks": 7,
+    "dice_mean": 0.9389100903644236,
+    "cause": "single ED-ES pair fallback; empty_frac=0.00"
+  },
+  {
+    "rank": 5,
+    "file_name": "0X333A6598916DD19",
+    "ef_label": 65.82425699,
+    "fac_pred_pct": 99.6105,
+    "abs_error_pp": 33.78624301000001,
+    "n_beats": 1,
+    "rejected_ed_peaks": 0,
+    "dice_mean": 0.8836169677108692,
+    "cause": "unstable contour: 11% of frames show >50% area jump"
+  }
+]

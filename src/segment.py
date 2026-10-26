@@ -25,7 +25,7 @@ class DoubleConv(nn.Module):
 
 
 class UNet(nn.Module):
-    def __init__(self, in_channels: int = 1, out_channels: int = 1, features: list[int] = None):
+    def __init__(self, in_channels: int = 1, out_channels: int = 1, features: list[int] | tuple[int, ...] | None = None):
         super().__init__()
         if features is None:
             features = [64, 128, 256, 512]
@@ -72,36 +72,60 @@ class UNet(nn.Module):
 # Segmentation helpers
 # ---------------------------------------------------------------------------
 
-TARGET_SIZE = (256, 256)
+TARGET_SIZE = (112, 112)
 
 
-def load_model(weights_path: str, device: str = "cpu") -> UNet:
-    """Load a U-Net with pre-trained weights from a .pth file."""
-    model = UNet(in_channels=1, out_channels=1)
-    state = torch.load(weights_path, map_location=device)
-    model.load_state_dict(state)
+def choose_device(requested: str | None = None) -> str:
+    """Use CUDA when available unless the caller requests a device."""
+    return requested or ("cuda" if torch.cuda.is_available() else "cpu")
+
+
+def load_model(
+    weights_path: str,
+    device: str | None = None,
+    widths: list[int] | tuple[int, ...] | None = None,
+) -> UNet:
+    """Load matching U-Net weights and fail clearly on key mismatch."""
+    device = choose_device(device)
+    model = UNet(in_channels=1, out_channels=1, features=widths)
+    state = torch.load(weights_path, map_location=device, weights_only=True)
+    if isinstance(state, dict) and "state_dict" in state:
+        state = state["state_dict"]
+    if not isinstance(state, dict):
+        raise ValueError("Weights must contain a U-Net state dictionary.")
+    expected, received = set(model.state_dict()), set(state)
+    if expected != received:
+        missing = sorted(expected - received)
+        unexpected = sorted(received - expected)
+        raise ValueError(f"Weight keys do not match this U-Net. Missing: {missing}. Unexpected: {unexpected}.")
+    model.load_state_dict(state, strict=True)
     model.to(device)
     model.eval()
     return model
 
 
-def frame_to_tensor(gray_frame: np.ndarray) -> torch.Tensor:
+def frame_to_tensor(gray_frame: np.ndarray, target_size: tuple[int, int] = TARGET_SIZE) -> torch.Tensor:
     """Resize, normalise, and convert a grayscale frame to a (1,1,H,W) tensor."""
-    resized = cv2.resize(gray_frame, TARGET_SIZE)
+    resized = cv2.resize(gray_frame, target_size)
     normalised = resized.astype(np.float32) / 255.0
     tensor = torch.from_numpy(normalised).unsqueeze(0).unsqueeze(0)
     return tensor
 
 
-def predict_mask(model: UNet, gray_frame: np.ndarray, threshold: float = 0.5, device: str = "cpu") -> np.ndarray:
+def predict_mask(
+    model: UNet,
+    gray_frame: np.ndarray,
+    threshold: float = 0.5,
+    device: str = "cpu",
+    target_size: tuple[int, int] = TARGET_SIZE,
+) -> np.ndarray:
     """Run inference on one preprocessed grayscale frame; return a binary uint8 mask."""
-    tensor = frame_to_tensor(gray_frame).to(device)
+    tensor = frame_to_tensor(gray_frame, target_size).to(device)
     with torch.no_grad():
         logits = model(tensor)
         prob = torch.sigmoid(logits).squeeze().cpu().numpy()
 
     binary = (prob > threshold).astype(np.uint8) * 255
-    # Resize back to original frame dimensions
     original_size = (gray_frame.shape[1], gray_frame.shape[0])
     mask = cv2.resize(binary, original_size, interpolation=cv2.INTER_NEAREST)
     return mask
@@ -111,7 +135,22 @@ def segment_frames(
     model: UNet,
     preprocessed_frames: list[np.ndarray],
     threshold: float = 0.5,
-    device: str = "cpu",
+    device: str | None = None,
+    batch_size: int = 16,
+    target_size: tuple[int, int] = TARGET_SIZE,
 ) -> list[np.ndarray]:
-    """Return a binary mask for every preprocessed frame in the sequence."""
-    return [predict_mask(model, f, threshold, device) for f in preprocessed_frames]
+    """Return binary masks with batched inference."""
+    if not preprocessed_frames:
+        return []
+    device = choose_device(device)
+    masks: list[np.ndarray] = []
+    model.eval()
+    for start in range(0, len(preprocessed_frames), batch_size):
+        frames = preprocessed_frames[start : start + batch_size]
+        tensors = torch.cat([frame_to_tensor(frame, target_size) for frame in frames]).to(device)
+        with torch.no_grad():
+            probabilities = torch.sigmoid(model(tensors)).squeeze(1).cpu().numpy()
+        for probability, frame in zip(probabilities, frames):
+            binary = (probability > threshold).astype(np.uint8) * 255
+            masks.append(cv2.resize(binary, (frame.shape[1], frame.shape[0]), interpolation=cv2.INTER_NEAREST))
+    return masks

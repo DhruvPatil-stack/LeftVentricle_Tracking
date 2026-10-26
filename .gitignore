@@ -19,10 +19,20 @@ ENV/
 .ipynb_checkpoints/
 *.ipynb
 
-# PyTorch model weights
+# Data and model weights
+*.avi
 *.pth
 *.pt
 *.ckpt
+*.zip
+EchoNet-Dynamic.zip
+
+# Frame cache (large, regenerable)
+data/cache/
+
+# Overlay images / videos that show dataset frames
+results/mask_check/
+outputs/
 
 # Large video / image datasets
 data/*.avi
@@ -32,11 +42,17 @@ data/*.mkv
 data/*.npy
 data/*.npz
 
-# Outputs (keep directory, ignore generated files)
-outputs/*.png
-outputs/*.jpg
-outputs/*.csv
-outputs/*.mp4
+# Restricted dataset files and generated outputs
+FileList.csv
+VolumeTracings.csv
+models/
+.venv/
+.venv_work/
+.venv_retry/
+.tmp_python/
+.uv-cache/
+.uv-python/
+.pytest_cache/
 
 # IDE
 .vscode/

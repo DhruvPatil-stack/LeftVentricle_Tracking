@@ -1,0 +1,219 @@
+{
+  "n_val": 100,
+  "f_candidates": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5
+  ],
+  "chosen_f": 0.3,
+  "chosen_reason": "lowest area_power MAE on VAL (6.298 pp); ties within 0.2 pp broken by lower f",
+  "train_mean_baseline_on_val": {
+    "mae_pp": 9.134,
+    "rmse_pp": 11.761,
+    "bias_pp": -1.944,
+    "pearson_r": -0.0,
+    "n": 100,
+    "train_mean_ef_pct": 55.778
+  },
+  "calibration_fit_on_val": {
+    "area_power": {
+      "a": 0.7594,
+      "b": 11.9992,
+      "n": 100
+    },
+    "method_of_disks": {
+      "a": 0.7547,
+      "b": 10.0822,
+      "n": 100
+    },
+    "area_ratio": {
+      "a": 0.8097,
+      "b": 20.1071,
+      "n": 100
+    }
+  },
+  "sweep_rows": [
+    {
+      "variant": "old",
+      "f": "old",
+      "estimator": "area_ratio",
+      "mae_pp": 19.017,
+      "rmse_pp": 23.367,
+      "bias_pp": -18.616,
+      "pearson_r": 0.475,
+      "n": 100
+    },
+    {
+      "variant": "old",
+      "f": "old",
+      "estimator": "area_power",
+      "mae_pp": 11.262,
+      "rmse_pp": 18.086,
+      "bias_pp": -6.554,
+      "pearson_r": 0.454,
+      "n": 100
+    },
+    {
+      "variant": "old",
+      "f": "old",
+      "estimator": "method_of_disks",
+      "mae_pp": 11.32,
+      "rmse_pp": 17.325,
+      "bias_pp": -3.76,
+      "pearson_r": 0.473,
+      "n": 100
+    },
+    {
+      "variant": "prom_0.1",
+      "f": 0.1,
+      "estimator": "area_ratio",
+      "mae_pp": 12.659,
+      "rmse_pp": 14.529,
+      "bias_pp": -11.845,
+      "pearson_r": 0.724,
+      "n": 100
+    },
+    {
+      "variant": "prom_0.1",
+      "f": 0.1,
+      "estimator": "area_power",
+      "mae_pp": 6.657,
+      "rmse_pp": 8.732,
+      "bias_pp": 1.822,
+      "pearson_r": 0.746,
+      "n": 100
+    },
+    {
+      "variant": "prom_0.1",
+      "f": 0.1,
+      "estimator": "method_of_disks",
+      "mae_pp": 7.563,
+      "rmse_pp": 9.774,
+      "bias_pp": 4.761,
+      "pearson_r": 0.755,
+      "n": 100
+    },
+    {
+      "variant": "prom_0.2",
+      "f": 0.2,
+      "estimator": "area_ratio",
+      "mae_pp": 12.528,
+      "rmse_pp": 14.478,
+      "bias_pp": -11.613,
+      "pearson_r": 0.71,
+      "n": 100
+    },
+    {
+      "variant": "prom_0.2",
+      "f": 0.2,
+      "estimator": "area_power",
+      "mae_pp": 6.825,
+      "rmse_pp": 9.141,
+      "bias_pp": 2.064,
+      "pearson_r": 0.729,
+      "n": 100
+    },
+    {
+      "variant": "prom_0.2",
+      "f": 0.2,
+      "estimator": "method_of_disks",
+      "mae_pp": 7.782,
+      "rmse_pp": 10.286,
+      "bias_pp": 4.864,
+      "pearson_r": 0.737,
+      "n": 100
+    },
+    {
+      "variant": "prom_0.3",
+      "f": 0.3,
+      "estimator": "area_ratio",
+      "mae_pp": 12.268,
+      "rmse_pp": 13.84,
+      "bias_pp": -11.268,
+      "pearson_r": 0.742,
+      "n": 100
+    },
+    {
+      "variant": "prom_0.3",
+      "f": 0.3,
+      "estimator": "area_power",
+      "mae_pp": 6.298,
+      "rmse_pp": 8.28,
+      "bias_pp": 2.487,
+      "pearson_r": 0.772,
+      "n": 100
+    },
+    {
+      "variant": "prom_0.3",
+      "f": 0.3,
+      "estimator": "method_of_disks",
+      "mae_pp": 7.298,
+      "rmse_pp": 9.39,
+      "bias_pp": 5.404,
+      "pearson_r": 0.793,
+      "n": 100
+    },
+    {
+      "variant": "prom_0.4",
+      "f": 0.4,
+      "estimator": "area_ratio",
+      "mae_pp": 12.156,
+      "rmse_pp": 13.734,
+      "bias_pp": -10.951,
+      "pearson_r": 0.73,
+      "n": 100
+    },
+    {
+      "variant": "prom_0.4",
+      "f": 0.4,
+      "estimator": "area_power",
+      "mae_pp": 6.546,
+      "rmse_pp": 8.631,
+      "bias_pp": 2.803,
+      "pearson_r": 0.762,
+      "n": 100
+    },
+    {
+      "variant": "prom_0.4",
+      "f": 0.4,
+      "estimator": "method_of_disks",
+      "mae_pp": 7.591,
+      "rmse_pp": 9.799,
+      "bias_pp": 5.707,
+      "pearson_r": 0.782,
+      "n": 100
+    },
+    {
+      "variant": "prom_0.5",
+      "f": 0.5,
+      "estimator": "area_ratio",
+      "mae_pp": 11.966,
+      "rmse_pp": 13.49,
+      "bias_pp": -10.677,
+      "pearson_r": 0.728,
+      "n": 100
+    },
+    {
+      "variant": "prom_0.5",
+      "f": 0.5,
+      "estimator": "area_power",
+      "mae_pp": 6.546,
+      "rmse_pp": 8.636,
+      "bias_pp": 3.14,
+      "pearson_r": 0.761,
+      "n": 100
+    },
+    {
+      "variant": "prom_0.5",
+      "f": 0.5,
+      "estimator": "method_of_disks",
+      "mae_pp": 7.656,
+      "rmse_pp": 9.869,
+      "bias_pp": 6.059,
+      "pearson_r": 0.783,
+      "n": 100
+    }
+  ]
+}
